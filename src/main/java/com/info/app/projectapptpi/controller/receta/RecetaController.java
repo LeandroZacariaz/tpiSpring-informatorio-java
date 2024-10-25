@@ -19,6 +19,7 @@ import com.info.app.projectapptpi.dto.ingrediente.IngredienteDetalleDto;
 import com.info.app.projectapptpi.dto.receta.RecetaCreateDto;
 import com.info.app.projectapptpi.dto.receta.RecetaDetalleDto;
 import com.info.app.projectapptpi.dto.receta.RecetaDto;
+import com.info.app.projectapptpi.exceptions.ResourceNotFoundException;
 import com.info.app.projectapptpi.service.ingrediente.IngredienteService;
 import com.info.app.projectapptpi.service.receta.RecetaService;
 
@@ -55,7 +56,7 @@ public class RecetaController {
         if (recetaOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(recetaOptional.get());
         }else{
-            return null;
+            throw new ResourceNotFoundException("La receta con id: "+id_receta+ " no existe.");
         }
     }
 
